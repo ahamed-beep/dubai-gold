@@ -1,6 +1,7 @@
 import { User, Key, ArrowLeft } from "lucide-react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const AdminLogin = () => {
     // If called from a keyboard event, prevent default (avoid form submit / page reload)
     if (e && e.preventDefault) e.preventDefault();
     if (email.trim() && password) {
-      // navigate to admin dashboard
+     toast.success('login successfull')
       navigate('/admin-dashboard');
     } else {
       // optional: you can show a toast or focus the empty field

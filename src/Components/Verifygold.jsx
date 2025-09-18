@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useRef, useEffect } from "react"
 import { QRCodeSVG } from "qrcode.react"
 import { X } from "lucide-react";
+import { toast } from "react-toastify";
 
 const Verifygold = () => {
   const [itemCode, setItemCode] = useState("")
@@ -44,7 +45,7 @@ const Verifygold = () => {
       setShowCertificate(true)
     } else {
       // Optional: Show alert if fields are empty
-      alert("Please enter both item code and serial number")
+      toast.info("Please enter both item code and serial number")
     }
   }
 
