@@ -41,7 +41,7 @@ const Navbar = () => {
               <div className=" text-[12px] md:text-xl font-bold text-amber-800 leading-tight">
                 DUBAI
               </div>
-              <div className="text-base font-semibold text-amber-700">
+              <div className=" text-[11px] md:text-base font-semibold text-amber-700">
                 Gold/Silver-BarMaker
               </div>
             </div>
