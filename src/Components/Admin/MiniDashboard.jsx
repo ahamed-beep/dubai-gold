@@ -103,9 +103,7 @@ export default function MiniDashboard() {
   }
 
   const handlelogout = () => {
-    // navigate('/')
-    // toast.success('signout successfull')
-    console.log('Sign out clicked')
+    navigate('/')
     toast.success('Sign out successful!')
   }
 
