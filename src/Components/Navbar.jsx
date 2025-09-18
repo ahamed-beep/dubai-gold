@@ -36,7 +36,7 @@ const Navbar = () => {
             className=" w-13 h-13  md:w-15 md:h-15 object-contain"
             alt="Dubai GoldBarMaker Logo"
           />
-          <div className="md:ml-3">
+          <div className=" ml-0 md:ml-3">
             <div className="flex flex-col">
               <div className=" text-[12px] md:text-xl font-bold text-amber-800 leading-tight">
                 DUBAI
