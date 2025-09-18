@@ -13,6 +13,7 @@ import {
 import ProfileForm from "./CreateUserData"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import GoldManagement from "./GoldManagment"
 
 // Mock ProfileForm component
 
@@ -38,60 +39,9 @@ export default function MiniDashboard() {
 
       case "Show Data":
         return (
-          <div className="animate-fade-in-right">
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm animate-fade-in-up hover:shadow-lg transition-all duration-300">
-              <div className="p-6 border-b border-gray-200">
-                <h3 className="flex items-center space-x-2 text-lg font-semibold">
-                  <History className="w-6 h-6 text-green-600" />
-                  <span>Transaction History</span>
-                </h3>
-              </div>
-              <div className="p-6">
-                <div className="space-y-4">
-                  {[
-                    { type: "Referral Bonus", amount: "+$4.50", date: "2024-01-15", status: "Completed" },
-                    { type: "Daily Profit", amount: "+$1.00", date: "2024-01-14", status: "Completed" },
-                    { type: "Withdrawal", amount: "-$50.00", date: "2024-01-10", status: "Processing" },
-                    { type: "Referral Bonus", amount: "+$4.50", date: "2024-01-08", status: "Completed" },
-                    { type: "Daily Profit", amount: "+$1.00", date: "2024-01-07", status: "Completed" },
-                  ].map((transaction, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                            transaction.amount.startsWith("+") ? "bg-green-100" : "bg-red-100"
-                          }`}
-                        >
-                          {transaction.amount.startsWith("+") ? (
-                            <TrendingUp className="w-5 h-5 text-green-600" />
-                          ) : (
-                            <Minus className="w-5 h-5 text-red-600" />
-                          )}
-                        </div>
-                        <div>
-                          <p className="font-semibold">{transaction.type}</p>
-                          <p className="text-sm text-gray-500">{transaction.date}</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p
-                          className={`font-semibold ${
-                            transaction.amount.startsWith("+") ? "text-green-600" : "text-red-600"
-                          }`}
-                        >
-                          {transaction.amount}
-                        </p>
-                        <p className="text-xs text-gray-500">{transaction.status}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+         <div>
+          <GoldManagement/>
+         </div>
         )
 
       default:
