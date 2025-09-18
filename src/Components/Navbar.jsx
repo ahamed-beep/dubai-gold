@@ -38,7 +38,7 @@ const Navbar = () => {
           />
           <div className="ml-3">
             <div className="flex flex-col">
-              <div className=" text-[5px] md:text-xl font-bold text-amber-800 leading-tight">
+              <div className=" text-[15px] md:text-xl font-bold text-amber-800 leading-tight">
                 DUBAI
               </div>
               <div className="text-base font-semibold text-amber-700">
