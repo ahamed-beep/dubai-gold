@@ -128,7 +128,7 @@ const Verifygold = () => {
 }
 
 const CertificatePopup = ({ itemCode, serialNumber }) => {
-  const websiteUrl = "https://yourwebsite.com"
+  const websiteUrl = "https://dubaigold-barmaker.netlify.app/"
   const certificateRef = useRef(null)
 
   return (
