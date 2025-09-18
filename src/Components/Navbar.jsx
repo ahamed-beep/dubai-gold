@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`   px-6 py-4 transition-all duration-300 mb-0 ${
+      className={`  px-2 md:px-6  py-2 md:py-4 transition-all duration-300 mb-0 ${
         isScrolled
           ? "bg-white/10 backdrop-blur-sm shadow"
           : "bg-transparent"
