@@ -121,11 +121,9 @@ const handlelogout=()=>{
         {/* Logo Section */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">RM</span>
-            </div>
+           
             <div>
-              <h1 className="font-semibold text-gray-900">Referral Manager</h1>
+              <h1 className="font-semibold text-gray-900">Admin</h1>
               <p className="text-sm text-gray-500">Management System</p>
             </div>
           </div>
