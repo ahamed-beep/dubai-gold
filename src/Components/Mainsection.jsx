@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from './Home'
 import HeroSection from './Herosection'
 import Verifygold from './Verifygold'
 import AtombeatFooter from './Footer'
+import Navbar from './Navbar'
 
 const Mainsection = () => {
   return (

@@ -24,7 +24,7 @@ Gold-BarMaker</p>
             </div>
           </div>
           {/* Right side - Navigation */}
-          <div className="flex flex-col md:mr-20 gap-4 text-center">
+          <div className="flex  flex-col md:mr-20 gap-4 justify-center text-center">
             <a href="#" className="text-white hover:text-blue-200 transition-colors text-lg">
               Home
             </a>

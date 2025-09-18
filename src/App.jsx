@@ -1,5 +1,4 @@
 import React from 'react'
-import Home from './Components/Home'
 import Mainsection from './Components/Mainsection'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AdminLogin from './Components/Login'

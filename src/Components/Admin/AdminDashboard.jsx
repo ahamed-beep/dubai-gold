@@ -25,8 +25,8 @@ import ProfileForm from "./CreateUserData"
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: Users, label: "Referral Accounts" },
-  { icon: History, label: "Account History" },
+  { icon: Users, label: "Create Data" },
+  { icon: History, label: "Show data" },
 ]
 
 export default function AdminDashboard() {
@@ -222,14 +222,14 @@ export default function AdminDashboard() {
 
       
 
-      case "Referral Accounts":
+      case "Create Data":
         return (
           <div>
             <ProfileForm/>
           </div>
         )
 
-      case "Account History":
+      case "Show data":
         return (
           <div className="animate-fade-in-right">
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm animate-fade-in-up hover:shadow-lg transition-all duration-300">
@@ -287,70 +287,7 @@ export default function AdminDashboard() {
           </div>
         )
 
-      case "Fund Transfer":
-        return (
-          <div className="animate-fade-in-right">
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm animate-fade-in-up hover:shadow-lg transition-all duration-300">
-                <div className="p-6 border-b border-gray-200">
-                  <h3 className="flex items-center space-x-2 text-xl font-semibold">
-                    <ArrowUpDown className="w-6 h-6 text-blue-600" />
-                    <span>Fund Transfer</span>
-                  </h3>
-                </div>
-                <div className="p-6 space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg">
-                      <div className="p-4">
-                        <div className="flex items-center space-x-3">
-                          <Wallet className="w-8 h-8 text-blue-600" />
-                          <div>
-                            <p className="text-sm text-gray-600">Available Balance</p>
-                            <p className="text-2xl font-bold text-blue-600">$325.00</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-green-50 border border-green-200 rounded-lg">
-                      <div className="p-4">
-                        <div className="flex items-center space-x-3">
-                          <Send className="w-8 h-8 text-green-600" />
-                          <div>
-                            <p className="text-sm text-gray-600">Transfer Fee</p>
-                            <p className="text-2xl font-bold text-green-600">$0.50</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Recipient Email</label>
-                      <input
-                        type="email"
-                        placeholder="Enter recipient email"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Transfer Amount</label>
-                      <input
-                        type="number"
-                        placeholder="Enter amount"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                      />
-                    </div>
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Transfer
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
+   
 
       default:
         return (

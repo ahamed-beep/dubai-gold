@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 px-6 py-4 transition-all duration-300 mb-0 ${
+      className={`   px-6 py-4 transition-all duration-300 mb-0 ${
         isScrolled
           ? "bg-white/10 backdrop-blur-sm shadow"
           : "bg-transparent"
@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <img
             src="/Images/goldlogo.png"
-            className="w-15 h-15 object-contain"
+            className=" w-10 h-10  md:w-15 md:h-15 object-contain"
             alt="Dubai GoldBarMaker Logo"
           />
           <div className="ml-3">
@@ -42,7 +42,7 @@ const Navbar = () => {
                 DUBAI
               </div>
               <div className="text-base font-semibold text-amber-700">
-                Gold-BarMaker
+                Gold/Silver-BarMaker
               </div>
             </div>
           </div>
