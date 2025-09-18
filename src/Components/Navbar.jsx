@@ -51,7 +51,7 @@ const Navbar = () => {
         {/* Admin Login Button */}
         <div>
           <Link to='/login' >
-          <button className="bg-yellow-300 px-2 text-[10px] text-black md:px-6 py-2.5 rounded-full md:font-medium hover:bg-gray-50 transition-colors duration-200 shadow-sm">
+          <button className="bg-yellow-300 px-2 text-[13px] text-black md:px-6 py-2.5 rounded-full md:font-medium md:text-[15px] hover:bg-gray-50 transition-colors duration-200 shadow-sm">
             Admin Login
           </button>
           </Link>
