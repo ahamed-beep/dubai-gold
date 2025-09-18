@@ -159,7 +159,7 @@ export default function MiniDashboard() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden h-full fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => setIsMobileMenuOpen(false)}>
+        <div className="lg:hidden h-full fixed inset-0 z-50  bg-transparent bg-opacity-50" onClick={() => setIsMobileMenuOpen(false)}>
           <div className="fixed h-full inset-y-0 left-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out flex flex-col">
             {/* Mobile Menu Header */}
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
