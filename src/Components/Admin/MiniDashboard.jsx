@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react"
 import ProfileForm from "./CreateUserData"
+import { toast } from "react-toastify"
 
 // Mock ProfileForm component
 
@@ -105,7 +106,7 @@ export default function MiniDashboard() {
     // navigate('/')
     // toast.success('signout successfull')
     console.log('Sign out clicked')
-    alert('Sign out successful!')
+    toast.success('Sign out successful!')
   }
 
   return (
@@ -115,7 +116,7 @@ export default function MiniDashboard() {
         {/* Logo Section */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-transparent rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">RM</span>
             </div>
             <div>
