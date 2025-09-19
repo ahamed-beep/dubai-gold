@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`  px-2 md:px-6  py-2 md:py-4 transition-all duration-300 mb-0 ${
+      className={`  px-2 md:px-2 md:pr-3  py-2  transition-all duration-300 mb-0 ${
         isScrolled
           ? "bg-white/10 backdrop-blur-sm shadow"
           : "bg-transparent"
@@ -32,11 +32,11 @@ const Navbar = () => {
         {/* Logo Section */}
         <div className="flex items-center">
           <img
-            src="/Images/goldlogo.png"
-            className=" w-13 h-13  md:w-15 md:h-15 object-contain"
+            src="/Images/newlogo.png"
+            className=" w-13 h-13  md:w-20 md:h-20 object-contain"
             alt="Dubai GoldBarMaker Logo"
           />
-          <div className=" ml-1 md:ml-3">
+          <div className="  ">
             <div className="flex flex-col">
               <div className=" text-[13px] md:text-xl font-bold text-amber-800 leading-tight">
                 DUBAI

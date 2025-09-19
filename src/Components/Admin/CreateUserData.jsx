@@ -1,43 +1,90 @@
 "use client"
 
-import { useState } from "react"
-import { ChevronDown, Upload, CheckCircle } from "lucide-react"
+import { useState, useEffect } from "react"
+import { CheckCircle, Download, Printer, X } from "lucide-react"
+import QRCode from "react-qr-code"
 
 export default function ProfileForm() {
   const [formData, setFormData] = useState({
-    username: "",
+    barNumber: "",
     accountType: "Kg",
     firstName: "",
     lastName: "",
-    type: ""
+    metalType: "GOLD",
+    serialNumber: "",
+    origin: "",
+    productionDate: "",
+    username: "",
   })
 
   const [showToast, setShowToast] = useState(false)
+  const [showCertificate, setShowCertificate] = useState(false)
 
-  const initialFormData = {
-    username: "",
-    accountType: "Kg", 
+    const initialFormData = {
+    barNumber: "",
+    accountType: "Kg",
     firstName: "",
     lastName: "",
-    type: ""
+    metalType: "GOLD",
+    serialNumber: "",
+    origin: "",
+    productionDate: "",
+    username: "",
   }
+
+  // ✅ Scroll lock jab popup khula ho
+  useEffect(() => {
+    if (showCertificate) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  }, [showCertificate])
 
   const handleReset = () => {
     setFormData(initialFormData)
   }
 
   const handleSubmit = () => {
-    setShowToast(true)
-    setTimeout(() => {
-      setShowToast(false)
-    }, 3000)
+    setShowCertificate(true)
   }
 
   const handleNumberChange = (field, value) => {
-    // Prevent negative values
-    if (value === '' || parseFloat(value) >= 0) {
+    if (value === "" || Number.parseFloat(value) >= 0) {
       setFormData({ ...formData, [field]: value })
     }
+  }
+
+  // ✅ Print
+  const handlePrint = () => {
+    const printContent = document.getElementById("certificate-content")
+    const newWin = window.open("", "_blank")
+    newWin.document.write(`
+      <html>
+        <head>
+          <title>Certificate</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+          </style>
+        </head>
+        <body>${printContent.innerHTML}</body>
+      </html>
+    `)
+    newWin.document.close()
+    newWin.print()
+  }
+
+  // ✅ Download as Image
+  const handleDownload = () => {
+    const node = document.getElementById("certificate-content")
+    import("html2canvas").then(({ default: html2canvas }) => {
+      html2canvas(node).then((canvas) => {
+        const link = document.createElement("a")
+        link.download = "certificate.png"
+        link.href = canvas.toDataURL("image/png")
+        link.click()
+      })
+    })
   }
 
   return (
@@ -50,23 +97,155 @@ export default function ProfileForm() {
         </div>
       )}
 
+      {showCertificate && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto relative">
+            {/* Close + Actions */}
+            <div className="absolute top-3 right-3 flex gap-3">
+            
+              <button
+                onClick={handlePrint}
+                className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full"
+              >
+                <Printer className="w-5 h-5 z-10" />
+              </button>
+              <button
+                onClick={() => setShowCertificate(false)}
+                className="p-2 bg-red-100 hover:bg-red-200 rounded-full"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-8 flex justify-center">
+              <div
+                id="certificate-content"
+                className="bg-white p-4 relative"
+                style={{ width: "800px", height: "500px" }}
+              >
+                {/* Header with logo and title */}
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-4">
+                    <img className="w-18 h-18" src="/Images/goldlogo.png" />
+                    <div>
+                      <div className="text-yellow-600 font-bold text-2xl leading-tight tracking-wide">
+                        Dubai Gold-Silver Bar Maker
+                      </div>
+                      <div
+                        className="text-lg leading-tight text-gray-800"
+                        style={{ fontFamily: "Arial", direction: "rtl" }}
+                      >
+                        دبئی گولڈ سلور بار میکر
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="mb-2">
+                      <QRCode
+                        value={`https://dubaigoldsilver.com/certificate/${formData.username || "gold"}`}
+                        size={80}
+                        bgColor="#ffffff"
+                        fgColor="#000000"
+                      />
+                    </div>
+                    <div className="text-sm font-medium">
+                      Date: {formData.productionDate || "___________"}
+                    </div>
+                  </div>
+                </div>
+
+                <table className="w-full border-collapse border-2 border-black text-sm mb-4">
+                  <thead>
+                    <tr>
+                      <th className="border border-black p-3 bg-white text-center font-bold">
+                        Bar Number
+                        <br />
+                        <span className="text-xs font-normal">نمبر بار</span>
+                      </th>
+                      <th className="border border-black p-3 bg-white text-center font-bold">
+                        Weight
+                        <br />
+                        <span className="text-xs font-normal">وزن</span>
+                      </th>
+                      <th className="border border-black p-3 bg-white text-center font-bold">
+                        Fine Weight in Grams
+                        <br />
+                        <span className="text-xs font-normal">خالص وزن گرام میں</span>
+                      </th>
+                      <th className="border border-black p-3 bg-white text-center font-bold">
+                        Type
+                        <br />
+                        <span className="text-xs font-normal">قسم</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-black p-4 text-center font-medium">{formData.username}</td>
+                      <td className="border border-black p-4 text-center font-medium">{formData.firstName}</td>
+                      <td className="border border-black p-4 text-center font-medium">{formData.lastName}</td>
+                      <td className="border border-black p-4 text-center font-medium">{formData.type}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div className="text-sm leading-tight text-gray-800">
+                  <div className="font-medium">Shop#1, Aslam Plaza, Soha Bazar, Rang Mehal, Lahore.</div>
+                  <div className="font-medium">Cell: 0300-0000000, www.Dubaigoldsilver.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Form */}
       <div className="p-6 space-y-6">
         {/* Bar Number */}
+       
+
+        {/* Serial Number */}
         <div className="space-y-2">
-          <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-            Bar Number
+          <label htmlFor="serialNumber" className="block text-sm font-medium text-gray-700">
+            Serial Number
           </label>
-          <div className="relative">
-            <input
-              id="username"
-              type="text"
-              placeholder="00000"
-              value={formData.username}
-              onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-              className="w-full pl-3 pr-10 py-2 bg-white border border-gray-200 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          </div>
+          <input
+            id="serialNumber"
+            type="text"
+            placeholder="Enter serial number"
+            value={formData.serialNumber}
+            onChange={(e) => setFormData({ ...formData, serialNumber: e.target.value })}
+            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900"
+          />
+        </div>
+
+        {/* Origin */}
+        <div className="space-y-2">
+          <label htmlFor="origin" className="block text-sm font-medium text-gray-700">
+            Origin
+          </label>
+          <input
+            id="origin"
+            type="text"
+            placeholder="Enter origin"
+            value={formData.origin}
+            onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
+            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900"
+          />
+        </div>
+
+        {/* Production Date */}
+        <div className="space-y-2">
+          <label htmlFor="productionDate" className="block text-sm font-medium text-gray-700">
+            Production Date
+          </label>
+          <input
+            id="productionDate"
+            type="date"
+            value={formData.productionDate}
+            onChange={(e) => setFormData({ ...formData, productionDate: e.target.value })}
+            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900"
+          />
         </div>
 
         {/* Weight Type */}
@@ -74,19 +253,16 @@ export default function ProfileForm() {
           <label htmlFor="accountType" className="block text-sm font-medium text-gray-700">
             Weight Type
           </label>
-          <div className="relative">
-            <select
-              id="accountType"
-              value={formData.accountType}
-              onChange={(e) => setFormData({ ...formData, accountType: e.target.value })}
-              className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
-            >
-              <option value="Kg">Kg</option>
-              <option value="Tola">Tola</option>
-              <option value="Gram">Gram</option>
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-          </div>
+          <select
+            id="accountType"
+            value={formData.accountType}
+            onChange={(e) => setFormData({ ...formData, accountType: e.target.value })}
+            className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-gray-900"
+          >
+            <option value="Kg">Kg</option>
+            <option value="Tola">Tola</option>
+            <option value="Gram">Gram</option>
+          </select>
         </div>
 
         {/* Weight */}
@@ -101,8 +277,8 @@ export default function ProfileForm() {
             step="0.01"
             placeholder="Enter weight"
             value={formData.firstName}
-            onChange={(e) => handleNumberChange('firstName', e.target.value)}
-            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            onChange={(e) => handleNumberChange("firstName", e.target.value)}
+            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900"
           />
         </div>
 
@@ -118,37 +294,53 @@ export default function ProfileForm() {
             step="0.01"
             placeholder="Enter fine weight"
             value={formData.lastName}
-            onChange={(e) => handleNumberChange('lastName', e.target.value)}
-            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            onChange={(e) => handleNumberChange("lastName", e.target.value)}
+            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900"
           />
         </div>
 
         {/* Type */}
-        <div className="space-y-2">
-          <label htmlFor="type" className="block text-sm font-medium text-gray-700">
-            Type
+           <div className="space-y-2">
+          <label htmlFor="metalType" className="block text-sm font-medium text-gray-700">
+            Metal Type <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="metalType"
+            value={formData.metalType}
+            onChange={(e) => setFormData({ ...formData, metalType: e.target.value })}
+            className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-gray-900"
+            required
+          >
+            <option value="GOLD">GOLD</option>
+            <option value="SILVER">SILVER</option>
+          </select>
+        </div>
+
+          <div className="space-y-2">
+          <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+            Username
           </label>
           <input
-            id="type"
+            id="username"
             type="text"
-            placeholder="Enter type"
-            value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter username (optional)"
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-gray-900"
           />
         </div>
 
         {/* Action Buttons */}
         <div className="flex justify-end gap-3 pt-4">
-          <button 
+          <button
             onClick={handleReset}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-transparent border border-gray-200 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-200 rounded-md hover:bg-gray-50"
           >
             Cancel
           </button>
-          <button 
+          <button
             onClick={handleSubmit}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
           >
             Submit Data
           </button>
