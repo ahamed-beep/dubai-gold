@@ -25,6 +25,7 @@ import ProfileForm from "./CreateUserData"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import GoldManagement from "./GoldManagment"
+import CombineGoldManagement from "./CombineGoldManagement"
 
 const sidebarItems = [
   { icon: Users, label: "Create Data",active: true  },
@@ -51,7 +52,7 @@ export default function AdminDashboard() {
       case "Show data":
         return (
          <div>
-          <GoldManagement/>
+          <CombineGoldManagement/>
          </div>
         )
 

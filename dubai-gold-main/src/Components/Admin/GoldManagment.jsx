@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Search, Eye, Edit, X } from "lucide-react"
 import axiosInstance from "../../api/axios"
 import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
  
 export default function GoldManagement() {
   const [metals, setMetals] = useState([])
@@ -51,12 +52,12 @@ export default function GoldManagement() {
   if (window.confirm("Are you sure you want to delete this metal?")) {
     try {
       await axiosInstance.delete(`/metals/${id}`);
-      alert("Metal deleted successfully!");
+      toast.success("Data deleted successfully!");
       // Optional: remove deleted item from state to update table instantly
       setMetals((prev) => prev.filter(item => item.id !== id));
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Failed to delete metal.");
+      toast.error(error.response?.data?.message || "Failed to delete Data.");
     }
   }
 };
@@ -87,7 +88,12 @@ export default function GoldManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div>
+
+  
+
+  
+    <div className="min-h-screen  bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Search Section */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
@@ -198,7 +204,7 @@ export default function GoldManagement() {
                     Metal Type
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Username
+                    Purchaser
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
@@ -273,5 +279,7 @@ export default function GoldManagement() {
         </div>
       </div>
     </div>
+     </div>
+
   )
 }

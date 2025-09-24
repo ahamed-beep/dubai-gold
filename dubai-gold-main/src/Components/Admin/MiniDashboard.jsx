@@ -14,6 +14,7 @@ import ProfileForm from "./CreateUserData"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 import GoldManagement from "./GoldManagment"
+import CombineGoldManagement from "./CombineGoldManagement"
 
 // Mock ProfileForm component
 
@@ -40,7 +41,7 @@ export default function MiniDashboard() {
       case "Show Data":
         return (
          <div>
-          {/* <GoldManagement/> */}
+          <CombineGoldManagement/>
          </div>
         )
 

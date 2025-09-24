@@ -9,19 +9,19 @@ const HeroSection = () => {
       title: "DUBAI Gold/Silver-BarMaker",
       subtitle: "Secured Investment",
       cta: "WHERE TO BUY",
-      image: "/Images/skider1.png"
+      image: "/Images/skider1.webp"
     },
     {
       title: "DUBAI Gold/Silver-BarMaker",
       subtitle: "Secured Investment",
       cta: "EXPLORE COLLECTION",
-      image: "/Images/skider2.png"
+      image: "/Images/skider2.webp"
     },
     {
       title: "DUBAI Gold/Silver-BarMaker",
       subtitle: "Secured Investment",
       cta: "GET STARTED",
-      image: "/Images/slider3.png"
+      image: "/Images/slider3.webp"
     }
   ];
 
@@ -53,19 +53,19 @@ const HeroSection = () => {
         
 
           {/* Main Heading */}
-          <h1 className="text-6xl md:text-8xl font-black text-white mb-4 tracking-wider leading-none">
+          <h1 className=" text-[43px]  md:text-8xl font-black text-white mb-4 tracking-wider leading-none">
             <span className="inline-block animate-fade-in">
               {heroTexts[currentText].title}
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-300 font-light mb-8 tracking-widest">
+          <p className="text-xl md:text-2xl text-gray-300 font-extralight md:font-light mb-8 tracking-widest">
             {heroTexts[currentText].subtitle}
           </p>
 
           {/* CTA Button */}
-          <button className="group relative bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-12 py-4 rounded-full font-bold text-lg tracking-wide hover:from-yellow-300 hover:to-yellow-400 transform hover:scale-105 transition-all duration-300 shadow-2xl">
+          <button className="group relative bg-gradient-to-r from-yellow-400 to-yellow-500 text-black   md:px-12 px-9 py-4 rounded-full font-bold text-sm  md:text-lg tracking-wide hover:from-yellow-300 hover:to-yellow-400 transform hover:scale-105 transition-all duration-300 shadow-2xl">
             <span className="relative z-10">{heroTexts[currentText].cta}</span>
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>

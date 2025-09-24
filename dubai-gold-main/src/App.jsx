@@ -24,7 +24,6 @@ const App = () => {
           <Route element={<Mainsection />} path='/' />
           <Route element={<AdminLogin />} path='/login' />
           {/* <Route element={<DetailPage />} path='/detail' /> */}
-          <Route element={<DetailPage />} path='/detail/:id' />
 
 
 
@@ -37,16 +36,16 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
-            <Route
-            path='/admin-dashboard'
+             <Route
+          path='/detail/:id'
             element={
-              
-                <CombineDashboard />
-
-     
+              <ProtectedRoute>
+                <DetailPage />
+              </ProtectedRoute>
             }
           />
+
+           
         </Routes>
       </BrowserRouter>
     </div>
